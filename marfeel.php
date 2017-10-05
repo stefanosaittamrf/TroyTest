@@ -7,7 +7,8 @@
     Author:      Marfeel Team
     Author URI:  http://www.marfeel.com
     License:     GPL2
-    License URI: https://www.gnu.org/licenses/gpl-2.0.html
+	License URI: https://www.gnu.org/licenses/gpl-2.0.html
+	GitHub Plugin URI: https://github.com/stefanosaittamrf/TroyTest
 */
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
@@ -21,6 +22,7 @@ require_once('amp_endpoint_support.php');
 register_activation_hook(__FILE__, 'activate_marfeel_plugin');
 register_deactivation_hook(__FILE__, 'deactivate_marfeel_plugin');
 
+add_action( 'upgrader_process_complete', 'wp_upe_upgrade_completed', 10, 2 );
 add_action('admin_init', 'register_marfeel_options');
 add_action('admin_menu', 'register_marfeel_settings_page' );
 add_action('wp_head', 'render_marfeel_amp_link' );
@@ -45,6 +47,17 @@ function deactivate_marfeel_plugin() {
 
 function register_marfeel_options() {
     register_setting(MARFEEL_OPTIONS, MARFEEL_OPTIONS, 'validate_marfeel_options');
+}
+
+function wp_upe_upgrade_completed( $upgrader_object, $options ) {
+	$mrf_plugin = plugin_basename( __FILE__ );
+	if( $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
+		foreach( $options['plugins'] as $plugin ) {
+			if( $plugin == $mrf_plugin && AmpEndpointSupport::getInstance()->check_rewrite_rules_active()) {
+				AmpEndpointSupport::getInstance()->activate_rewrite_strategy();
+			}
+		}
+	}
 }
 
 function validate_marfeel_options($options) {

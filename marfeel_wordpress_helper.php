@@ -53,14 +53,11 @@ class MarfeelWordpressHelper
 
     function remove_protocol_and_domain($uri) {
 		return parse_url($uri)['path'];
-    }
+	}
 
-    function crop_amp_endpoint($amp_url) {
-        if ( '' != get_option( 'permalink_structure' ) ) {
-            return chop($amp_url, user_trailingslashit( 'amp', 'single_amp' ));
-        }
-        return $amp_url;
-    }
+	function crop_amp_endpoint($amp_url) {
+		return user_trailingslashit(preg_replace('/\/amp\/?$/', '', $amp_url));
+	}
 
     function delete_all_options() {
         delete_option(MARFEEL_OPTIONS);

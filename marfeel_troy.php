@@ -104,9 +104,10 @@ class MarfeelTroy
     public function get_amp_link_for_uri() {
 		$current_uri = MarfeelWordpressHelper::getInstance()->get_current_uri();
 		$current_uri = rtrim($current_uri, '/') . '/';
+		$amp_end_point = user_trailingslashit('amp', '');
 
         if(isset($current_uri)) {
-          return '<link rel="amphtml" href="'.$current_uri.'amp">';
+          return '<link rel="amphtml" href="'.$current_uri.$amp_end_point.'">';
         }
         return '';
     }
