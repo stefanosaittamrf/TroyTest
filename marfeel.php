@@ -3,7 +3,7 @@
     Plugin Name: Marfeel
     Plugin URI:  http://www.marfeel.com
     Description: Marfeel configuration for Wordpress sites.
-    Version:     1.6.6
+    Version:     1.6.7
     Author:      Marfeel Team
     Author URI:  http://www.marfeel.com
     License:     GPL2
