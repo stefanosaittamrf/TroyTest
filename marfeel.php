@@ -3,7 +3,7 @@
     Plugin Name: Marfeel
     Plugin URI:  http://www.marfeel.com
     Description: Marfeel configuration for Wordpress sites.
-    Version:     1.6.1
+    Version:     1.6.2
     Author:      Marfeel Team
     Author URI:  http://www.marfeel.com
     License:     GPL2
@@ -12,7 +12,6 @@
 */
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
-
 define('MARFEEL_OPTIONS', 'marfeel_options');
 
 require_once('marfeel_troy.php');
