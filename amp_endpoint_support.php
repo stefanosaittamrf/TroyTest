@@ -30,9 +30,6 @@ class AmpEndpointSupport {
             
             add_rewrite_endpoint( 'AMP_QUERY_VAR', EP_PERMALINK );
             add_post_type_support( 'post', AMP_QUERY_VAR );
-            echo "YO!";
-            $a = $this->check_rewrite_rules();
-            var_dump($a);die;
             add_filter( 'request', 'mrf_amp_force_query_var_value' );
             flush_rewrite_rules();
 	    }
