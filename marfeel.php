@@ -3,7 +3,7 @@
     Plugin Name: Marfeel
     Plugin URI:  http://www.marfeel.com
     Description: Marfeel configuration for Wordpress sites.
-    Version:     1.6.2
+    Version:     1.6.3
     Author:      Marfeel Team
     Author URI:  http://www.marfeel.com
     License:     GPL2
@@ -49,11 +49,11 @@ function register_marfeel_options() {
 }
 
 function wp_upe_upgrade_completed( $upgrader_object, $options ) {
+	echo "YO!"; die;
 	$mrf_plugin = plugin_basename( __FILE__ );
 	if( $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
 		foreach( $options['plugins'] as $plugin ) {
 			if( $plugin == $mrf_plugin ) {
-				echo "YO!";
 				AmpEndpointSupport::getInstance()->activate_rewrite_strategy();
 			}
 		}
