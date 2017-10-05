@@ -27,7 +27,7 @@ class AmpEndpointSupport {
 
     function activate_rewrite_strategy() {
         if(!is_plugin_active(AMP_PLUGIN)) {
-            
+            echo "Updated"; die;
             add_rewrite_endpoint( 'AMP_QUERY_VAR', EP_PERMALINK );
             add_post_type_support( 'post', AMP_QUERY_VAR );
             add_filter( 'request', 'mrf_amp_force_query_var_value' );
