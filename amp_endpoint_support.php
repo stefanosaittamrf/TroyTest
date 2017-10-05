@@ -31,7 +31,7 @@ class AmpEndpointSupport {
             add_post_type_support( 'post', AMP_QUERY_VAR );
             add_filter( 'request', 'mrf_amp_force_query_var_value' );
             flush_rewrite_rules();
-	    }
+        }
     }
 
     function check_rewrite_rules_active() {
