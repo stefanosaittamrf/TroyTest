@@ -26,8 +26,7 @@ class AmpEndpointSupport {
     }
 
     function activate_rewrite_strategy() {
-        if(!is_plugin_active(AMP_PLUGIN)) {
-            echo "Updated"; die;
+        if (!is_plugin_active(AMP_PLUGIN)) {
             add_rewrite_endpoint( 'AMP_QUERY_VAR', EP_PERMALINK );
             add_post_type_support( 'post', AMP_QUERY_VAR );
             add_filter( 'request', 'mrf_amp_force_query_var_value' );
@@ -38,8 +37,11 @@ class AmpEndpointSupport {
     function check_rewrite_rules_active() {
         global $wp_rewrite;
         foreach ( $wp_rewrite->endpoints as $index => $endpoint ) {
-            return AMP_QUERY_VAR === $endpoint[1];
+            if ( AMP_QUERY_VAR === $endpoint[1] ) {
+                return true;
+            }
         }
+        return false;
     }
 
     function deactivate_rewrite_strategy() {
