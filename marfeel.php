@@ -53,7 +53,8 @@ function wp_upe_upgrade_completed( $upgrader_object, $options ) {
 	$mrf_plugin = plugin_basename( __FILE__ );
 	if( $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
 		foreach( $options['plugins'] as $plugin ) {
-			if( $plugin == $mrf_plugin && AmpEndpointSupport::getInstance()->check_rewrite_rules_active()) {
+			if( $plugin == $mrf_plugin ) {
+				echo "YO!";
 				AmpEndpointSupport::getInstance()->activate_rewrite_strategy();
 			}
 		}
